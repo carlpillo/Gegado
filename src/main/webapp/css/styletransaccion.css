@@ -1,0 +1,38 @@
+body{
+            display: block;
+            margin: 8px;
+           background-color: forestgreen !important;
+           
+        }
+.container{
+    font-style: italic;
+    font-family: fantasy;
+    margin-left: auto !important;
+
+}
+#border{
+    border-radius: 40px;
+    border-style: dotted !important;
+    border-width: thick !important;
+}
+#importe{
+    margin-left: auto !important;
+    width: 50%;
+    margin-right: auto;
+   justify-content: center !important;
+    display: flex;
+}
+#eleccionC{
+     margin-left: auto !important;
+    width: 50%;
+    margin-right: auto;
+   justify-content: center !important;
+    display: flex;
+}
+#detalles{
+     margin-left: auto !important;
+    width: 50%;
+    margin-right: auto;
+   justify-content: center !important;
+    display: flex;
+}

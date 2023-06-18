@@ -1,16 +1,20 @@
 package com.chapaybinario.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.DocFlavor.STRING;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chapaybinario.model.Categoria;
 import com.chapaybinario.model.Usuario;
+import com.chapaybinario.services.CategoriasDAO;
 import com.chapaybinario.services.UsuarioDao;
 import com.chapaybinario.services.Validaciones;
 
@@ -43,14 +47,44 @@ public class Controller extends HttpServlet implements Validaciones {
 		// TODO Auto-generated method stub
 		
 		opcion = request.getParameter("opcion");
-		id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(opcion + " " + id);
-		if (opcion.equals("modificacion")) {
-			System.out.println("voy bien");
-			modificacion(request, response);
-		}else {
-			eliminar(request, response);
+		
+		System.out.println(opcion);
+		switch (opcion) {
+		case "modificacion":
+			case "eliminar":{
+				id = Integer.parseInt(request.getParameter("id"));
+				if (opcion.equals("modificacion")) {
+//					System.out.println("voy bien");
+					modificacion(request, response);
+				}else {
+					eliminar(request, response);
+				}
+				break;
+			}
+			case "nuevaTransaccion":{
+				System.out.println("voy bien");
+				nuevaTransacion(request, response);
+				break;
+			}
+			case "agregarM":{
+				System.out.println("vamos terminando..jejej");
+				System.out.println(idUsuario);
+				int idC = Integer.parseInt(request.getParameter("eleccionC"));
+				String detalles = request.getParameter("detalles");
+				String categoria = request.getParameter("categoria");
+				int importe = Integer.parseInt(request.getParameter("importe"));
+				int cat;
+				if(categoria.equals("Ingresos"))
+					cat = 0;
+				else
+					cat = 1;
+				System.out.println("idC :" + idC);
+				System.out.println("Detalles :" + detalles);
+				System.out.println("Categoria :" + cat);
+				System.out.println("importe :" + importe);
+			}
 		}
+		
 		
 	}
 
@@ -228,5 +262,20 @@ public class Controller extends HttpServlet implements Validaciones {
 			request.setAttribute("msgExito", msgExito);
 		}
 	}
-	
+
+	protected void nuevaTransacion(HttpServletRequest request, HttpServletResponse response) {
+		
+		CategoriasDAO miCategoriasDAO = new CategoriasDAO();
+//		Categoria a = new Categoria();
+		List<Categoria> listaCategorias = new ArrayList<>();
+		try {
+			listaCategorias = miCategoriasDAO.readAll(); 
+			request.setAttribute("listaC", listaCategorias);
+			request.getRequestDispatcher("transaccion.jsp").forward(request, response);
+//			response.sendRedirect("transaccion.jsp");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

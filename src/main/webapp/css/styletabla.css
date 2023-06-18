@@ -1,0 +1,12 @@
+html{
+       display: block;
+            margin: 8px;
+           background-color: forestgreen !important;
+           
+        }
+.central{
+    text-align: center;
+    font-style: italic;
+    font-family: fantasy;
+    background-color: forestgreen !important;        
+}

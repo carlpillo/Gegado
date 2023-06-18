@@ -19,7 +19,7 @@
   
  <div class="col-md-4 col-xl-4 mx-auto">
       <label for="nombre" class="form-label">Nombre y Apellidos</label>
-      <input type="text" class="form-control"  name="nombre" id="nombre" maxlength="50" placeholder="Nombre y Apellidos" required>
+      <input type="text" class="form-control text-capitalize"  name="nombre" id="nombre" maxlength="50" placeholder="Nombre y Apellidos" required>
       <div class="invalid-feedback">
       Nombre está mal o está vacío
       </div>
